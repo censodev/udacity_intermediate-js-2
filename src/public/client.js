@@ -21,10 +21,14 @@ const TabPane = (photos) => {
     `
 }
 
-const render = (rover) => {
+const getRoverPhotos = (rover, callback) => {
     fetch(`http://localhost:3000/rover/${rover}/photos`)
         .then(res => res.json())
-        .then(photos => document.querySelector(`#${rover}`).innerHTML = TabPane(photos))
+        .then(callback)
+}
+
+const render = rover => {
+    getRoverPhotos(rover, photos => document.querySelector(`#${rover}`).innerHTML = TabPane(photos))
 }
 
 document.querySelectorAll('.nav-link')
