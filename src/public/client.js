@@ -13,7 +13,7 @@ const RoverDetail = (rover, dateMostRecentPhotos) => {
 const TabPane = (photos) => {
     const imgs = photos.slice(0, 12)
         .map(p => p.img_src)
-        .reduce((acc, cur) => `${acc}<img src="${cur}" class="img-thumbnail w-25" />`, '')
+        .reduce((acc, cur) => `${acc}<img src="${cur}" class="img-thumbnail" alt=""/>`, '')
     return `
         ${RoverDetail(photos[0].rover, photos[0].earth_date)}
         <div class="flex">

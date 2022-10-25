@@ -22,17 +22,23 @@ footer {
 
 /* -------------------  TABLET  --------------------- */
 @media (min-width: 768px) {
-  /* use mobile */
+    .img-thumbnail {
+        width: 50%;
+    }
 }
 
 /* -------------------  DESKTOP  -------------------- */
 
 @media (min-width: 1224px) {
-  /* use mobile */
+    .img-thumbnail {
+        width: 25%;
+    }
 }
 
 /* -------------------  LARGE SCREENS  -------------- */
 
 @media (min-width: 1824px) {
-  /* use mobile */
+    .img-thumbnail {
+        width: 20%;
+    }
 }
