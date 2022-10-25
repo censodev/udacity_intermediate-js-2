@@ -13,7 +13,7 @@ app.use(bodyParser.json())
 app.use('/', express.static(path.join(__dirname, '../public')))
 
 app.get('/rover/:id/photos', async (req, res) => {
-    getMarsRoverPhotos({rover: req.params.id}, data => res.send(data?.photos))
+    getMarsRoverPhotos({rover: req.params.id}, data => res.send(data?.latest_photos))
 })
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
