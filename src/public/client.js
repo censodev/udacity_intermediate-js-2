@@ -1,3 +1,27 @@
+const render = rover => {
+    document.querySelector(`.tab-content`).innerHTML = TabPane(window.state.get(rover))
+}
+
+const NavTabs = (active) => {
+    return ['curiosity', 'opportunity', 'spirit'].reduce((acc, cur) => `
+        ${acc}
+        <li class="nav-item" role="presentation">
+            <a class="nav-link ${cur === active ? 'active' : ''}"
+                type="button" data-rover="${cur}">${cur.toUpperCase()}</a>
+        </li>
+    `, '<ul class="nav nav-pills nav-fill" role="tablist">') + '</ul>'
+}
+
+const loadNavTabs = () => {
+    document.querySelector('#navtabs').innerHTML = NavTabs('curiosity')
+    document.querySelectorAll('.nav-link')
+        .forEach(s => s.addEventListener('click', e => {
+            render(e.target.dataset.rover)
+            document.querySelectorAll('.nav-link').forEach(nl => nl.classList.remove('active'))
+            e.target.classList.add('active')
+        }))
+}
+
 const RoverDetail = (rover, dateMostRecentPhotos) => {
     return `
         <div>
@@ -28,14 +52,8 @@ const getRoverPhotos = (rover, callback) => {
         .then(callback)
 }
 
-const render = rover => {
-    document.querySelector(`#${rover}`).innerHTML = TabPane(window.state.get(rover))
-}
-
-document.querySelectorAll('.nav-link')
-    .forEach(s => s.addEventListener('click', e => render(e.target.dataset.rover)))
-
 window.addEventListener('load', async () => {
+    loadNavTabs()
     getRoverPhotos('curiosity', data0 => {
         getRoverPhotos('opportunity', data1 => {
             getRoverPhotos('spirit', data2 => {
